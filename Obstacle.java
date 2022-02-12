@@ -29,6 +29,7 @@ public class Obstacle {
         this.height = height;
     }
 
+
     public void draw(){
         Graphics g = panel.getGraphics ();
         Graphics2D g2 = (Graphics2D) g;
@@ -50,6 +51,10 @@ public class Obstacle {
         g2.fill (new Rectangle2D.Double (x-5, y-5, width+10, height+10));
 
         g.dispose();
+    }
+
+    public Rectangle2D.Double getBoundingRectangle(){
+        return new Rectangle2D.Double(x, y, width, height);
     }
 
 }

@@ -98,29 +98,7 @@ public class Alien{
     }
 
     public void setVel(int direction){
-        //set initial vel depending on the direction
-        // if(noX && noY){
-        //     if(direction == 1){
-        //         dy = -25;
-        //         noY = false; 
-        //     }
-        //     if(direction == 2){
-        //         dy = 25;
-        //         noY = false;
-        //     }
-        //     if(direction == 3){
-        //         dx = -25;
-        //         noX = false;
-        //     }
-        //     if(direction == 4){
-        //         dx = 25;
-        //         noX = false;
-        //     }
-        //     return;
-        // }
-
-
-        //after start 
+         
         if(direction == 1 || direction == 2){
             //System.out.println("here");
             noY = false;
@@ -145,5 +123,9 @@ public class Alien{
                     dx = (int) (-scal*dx);
             }
         }
+    }
+
+    public Rectangle2D.Double getBoundingRectangle(){
+        return new Rectangle2D.Double(x,y,width,height);
     }
 }

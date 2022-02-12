@@ -5,10 +5,12 @@ public class GamePanel extends JPanel implements Runnable{
     
     private Alien alien;
     private Obstacle[] obstacles;
+    private GamePoint gamePoint;
 
     public GamePanel(){
         alien = null;
         obstacles = null;
+        gamePoint = null;
     }
 
     public void createGameEntities(){
@@ -18,6 +20,7 @@ public class GamePanel extends JPanel implements Runnable{
         obstacles[1] = new Obstacle(this, 310, 150, 15, 100);
         obstacles[2] = new Obstacle(this, 160, 80, 100, 15);
         obstacles[3] = new Obstacle(this, 160, 300, 100, 15);
+        gamePoint = new GamePoint(this);
     
     }
 
@@ -29,6 +32,10 @@ public class GamePanel extends JPanel implements Runnable{
             for(int i = 0; i<NUM_OBSTACLES; i++){
                 obstacles[i].draw();
             }
+        }
+        if(gamePoint != null){
+            gamePoint.setLocation();
+            gamePoint.draw();
         }
     }
 
