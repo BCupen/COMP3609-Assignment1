@@ -36,8 +36,8 @@ public class Alien{
         x = originalX;
         y = originalY;
   
-        dx = 0;
-        dy = 0;
+        dx = 25;
+        dy = 25;
         scal = 1;
         noX = true;
         noY = true;    
@@ -99,25 +99,25 @@ public class Alien{
 
     public void setVel(int direction){
         //set initial vel depending on the direction
-        if(noX && noY){
-            if(direction == 1){
-                dy = -25;
-                noY = false; 
-            }
-            if(direction == 2){
-                dy = 25;
-                noY = false;
-            }
-            if(direction == 3){
-                dx = -25;
-                noX = false;
-            }
-            if(direction == 4){
-                dx = 25;
-                noX = false;
-            }
-            return;
-        }
+        // if(noX && noY){
+        //     if(direction == 1){
+        //         dy = -25;
+        //         noY = false; 
+        //     }
+        //     if(direction == 2){
+        //         dy = 25;
+        //         noY = false;
+        //     }
+        //     if(direction == 3){
+        //         dx = -25;
+        //         noX = false;
+        //     }
+        //     if(direction == 4){
+        //         dx = 25;
+        //         noX = false;
+        //     }
+        //     return;
+        // }
 
 
         //after start 
@@ -137,9 +137,13 @@ public class Alien{
             //System.out.println("here");
             noY = true;
             noX = false;
+            if(direction == 3){
+                if(dx > 0)
+                    dx = (int) (-scal*dx);
+            }else if(direction == 4){
+                if(dx < 0)
+                    dx = (int) (-scal*dx);
+            }
         }
-
-
-
     }
 }
