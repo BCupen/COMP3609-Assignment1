@@ -20,9 +20,13 @@ public class GamePoint {
 
     private Random random;
 
+<<<<<<< HEAD
     private Obstacle[] obstacles;
 
     public GamePoint(JPanel p, Obstacle[] obstacles){
+=======
+    public GamePoint(JPanel p){
+>>>>>>> e83789ff277aded1bb26eb8610952f8cac679f64
         panel = p;
         bgColor = panel.getBackground();
         dimension = panel.getSize();
@@ -31,10 +35,13 @@ public class GamePoint {
         height = 10;
 
         random = new Random();
+<<<<<<< HEAD
         x = random.nextInt(390); //error using panelWidth()- width
         y = random.nextInt(390);
         this.obstacles = obstacles;
         
+=======
+>>>>>>> e83789ff277aded1bb26eb8610952f8cac679f64
     }   
     
     public void setLocation(){
@@ -55,6 +62,7 @@ public class GamePoint {
         g.dispose();
     }
 
+<<<<<<< HEAD
     public void erase(){
         Graphics g = panel.getGraphics ();
         Graphics2D g2 = (Graphics2D) g;
@@ -85,4 +93,7 @@ public class GamePoint {
 
         return false;
     }
+=======
+    
+>>>>>>> e83789ff277aded1bb26eb8610952f8cac679f64
 }

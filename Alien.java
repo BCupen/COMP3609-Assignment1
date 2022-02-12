@@ -22,11 +22,16 @@ public class Alien{
     private boolean noX, noY; //unidirectional control
     private Dimension dimension;
     private Color bgColor;
+<<<<<<< HEAD
 
     private GamePoint gamePoint;
     private Obstacle[] obstacles;
     
     public Alien(JPanel p, GamePoint gamePoint, Obstacle[] obstacles){
+=======
+    
+    public Alien(JPanel p){
+>>>>>>> e83789ff277aded1bb26eb8610952f8cac679f64
         panel = p;
         dimension = panel.getSize();
         bgColor = panel.getBackground ();
@@ -43,10 +48,14 @@ public class Alien{
         dy = 25;
         scal = 1;
         noX = true;
+<<<<<<< HEAD
         noY = true; 
         
         this.gamePoint = gamePoint;
         this.obstacles = obstacles;
+=======
+        noY = true;    
+>>>>>>> e83789ff277aded1bb26eb8610952f8cac679f64
     }
 
     public void draw(){
