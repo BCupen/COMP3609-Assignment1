@@ -6,11 +6,10 @@ public class GameWindow extends JFrame implements ActionListener, KeyListener, M
 
     private JLabel scoreL;
 
-    private JTextField scoreTF;
+    public static JTextField scoreTF;
 
     private JButton exitB;
     private JButton startB;
-    private JButton focusB;
 
     private Container c;
     private GamePanel gamePanel;
@@ -30,10 +29,8 @@ public class GameWindow extends JFrame implements ActionListener, KeyListener, M
         //buttons
         exitB = new JButton("Exit Game");
         startB = new JButton("Start Game");
-        focusB = new JButton("Focus on Key");
 
         exitB.addActionListener(this);
-        focusB.addActionListener(this);
         startB.addActionListener(this);
 
         //main panel
@@ -47,7 +44,7 @@ public class GameWindow extends JFrame implements ActionListener, KeyListener, M
         gamePanel = new GamePanel();
         gamePanel.setPreferredSize(new Dimension(400, 400));
         gamePanel.setBackground(Color.WHITE);
-        gamePanel.createGameEntities();
+        //gamePanel.createGameEntities();
         //gamePanel.drawGameEntities();
 
         //info panel
@@ -69,7 +66,6 @@ public class GameWindow extends JFrame implements ActionListener, KeyListener, M
         //add to button panel
         buttonPanel.add(startB);
         buttonPanel.add(exitB);
-        buttonPanel.add(focusB);
 
 
         //add to mainPanel
@@ -114,21 +110,27 @@ public class GameWindow extends JFrame implements ActionListener, KeyListener, M
 
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
+        // scoreTF.setText(String.valueOf(gamePanel.getScore()));
         if(keyCode == KeyEvent.VK_UP){
-            gamePanel.updateGameEntities(1);
-            gamePanel.drawGameEntities();
+            gamePanel.updateAlienVel(1);
+            // gamePanel.updateGameEntities();
+            // gamePanel.drawGameEntities();
+            
         }
         if(keyCode == KeyEvent.VK_DOWN){
-            gamePanel.updateGameEntities(2);
-            gamePanel.drawGameEntities();
+            gamePanel.updateAlienVel(2);
+            // gamePanel.updateGameEntities();
+            // gamePanel.drawGameEntities();
         }
         if(keyCode == KeyEvent.VK_LEFT){
-            gamePanel.updateGameEntities(3);
-            gamePanel.drawGameEntities();
+            gamePanel.updateAlienVel(3);
+            // gamePanel.updateGameEntities();
+            // gamePanel.drawGameEntities();
         }
         if(keyCode == KeyEvent.VK_RIGHT){
-            gamePanel.updateGameEntities(4);
-            gamePanel.drawGameEntities();
+            gamePanel.updateAlienVel(4);
+            // gamePanel.updateGameEntities();
+            // gamePanel.drawGameEntities();
         }
  
     }
@@ -140,14 +142,15 @@ public class GameWindow extends JFrame implements ActionListener, KeyListener, M
     public void actionPerformed(ActionEvent e) { 
         String command = e.getActionCommand();
         
-        if(command.equals(startB.getText()))
-            gamePanel.drawGameEntities();
+        if(command.equals(startB.getText())){
+            gamePanel.startGame();
+            mainPanel.requestFocus();
+        }
+            
 
         if(command.equals(exitB.getText()))
             System.exit(0);
 
-        if(command.equals(focusB.getText()))
-            mainPanel.requestFocus();
     }
 
 

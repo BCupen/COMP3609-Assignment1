@@ -42,6 +42,12 @@ public class GamePoint {
         int panelHeight = panel.getHeight();
         x = random.nextInt(panelWidth-width);
         y = random.nextInt(panelHeight - height);
+        while(collidesWithObstacles()){
+            x = random.nextInt(panelWidth-width);
+            y = random.nextInt(panelHeight - height); 
+        }
+        
+
     }
 
     public void draw(){
@@ -77,8 +83,8 @@ public class GamePoint {
         for(int i = 0; i < GamePanel.NUM_OBSTACLES; i++){
             obsRect = obstacles[i].getBoundingRectangle();
             if(thisRect.intersects(obsRect)){
-                    x += obsRect.getWidth() + 10;
-                    y += obsRect.getHeight() + 10;
+                    // x += obsRect.getWidth() + 10;
+                    // y += obsRect.getHeight() + 10;
                     return true;
             }
         }

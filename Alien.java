@@ -26,7 +26,7 @@ public class Alien{
     private GamePoint gamePoint;
     private Obstacle[] obstacles;
     
-    public Alien(JPanel p, GamePoint gamePoint, Obstacle[] obstacles){
+    public Alien(GamePanel p, GamePoint gamePoint, Obstacle[] obstacles){
         panel = p;
         dimension = panel.getSize();
         bgColor = panel.getBackground ();
@@ -81,14 +81,17 @@ public class Alien{
         g.dispose();
     }
 
-    public void move(int direction){
+    public void move(){
 
         if(!panel.isVisible()) return;
-        setVel(direction);
+        //setVel(direction);
         if(!noX)
             x = x + dx;
         if(!noY)
             y = y + dy;
+        if(collidesWithObstacles() || x < 0 || x > 400 || y < 0 || y > 400){
+            ((GamePanel) panel).endGame();
+        }
     }
 
     public void erase(){
@@ -97,7 +100,7 @@ public class Alien{
 
       // erase face by drawing a rectangle on top of it
 
-      g2.setColor (bgColor);
+      g2.setColor (Color.WHITE);
       g2.fill (new Rectangle2D.Double (x-10, y-10, 30+20, 45+20));
 
       g.dispose();
@@ -133,5 +136,23 @@ public class Alien{
 
     public Rectangle2D.Double getBoundingRectangle(){
         return new Rectangle2D.Double(x,y,width,height);
+    }
+
+    public boolean collidesWithObstacles(){
+        Rectangle2D.Double thisRect = getBoundingRectangle();
+        Rectangle2D.Double obsRect = null;
+        for(int i=0; i<GamePanel.NUM_OBSTACLES; i++){
+            obsRect = obstacles[i].getBoundingRectangle();
+            if(thisRect.intersects(obsRect)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean collidesWithGamePoint(){
+        Rectangle2D.Double thisRect = getBoundingRectangle();
+        Rectangle2D.Double ptRect = gamePoint.getBoundingRectangle();
+        return thisRect.intersects(ptRect);
     }
 }
