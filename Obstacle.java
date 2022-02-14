@@ -19,6 +19,8 @@ public class Obstacle {
     private Color bgColor;
     private Dimension dimension;
 
+    private boolean collided;
+
     public Obstacle(JPanel p, int xPos, int yPos, int width, int height){
         panel = p;
         dimension = panel.getSize();
@@ -27,6 +29,9 @@ public class Obstacle {
         y = yPos;
         this.width = width;
         this.height = height;
+
+        collided = false;
+        
     }
 
 
@@ -53,8 +58,29 @@ public class Obstacle {
         g.dispose();
     }
 
+    public void clear() {
+        Graphics g = panel.getGraphics ();
+        Graphics2D g2 = (Graphics2D) g;
+
+        // erase bat by drawing a rectangle on top of it with the background colour
+
+        g2.setColor (Color.RED);
+        g2.fill (new Rectangle2D.Double (x-5, y-5, width+10, height+10));
+
+        g.dispose();
+    }
+
     public Rectangle2D.Double getBoundingRectangle(){
         return new Rectangle2D.Double(x, y, width, height);
     }
+
+    public boolean getCollided(){
+        return this.collided;
+    }
+
+    public void setCollided(boolean stat){
+        this.collided = stat;
+    }
+
 
 }

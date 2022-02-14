@@ -24,7 +24,6 @@ public class GamePanel extends JPanel implements Runnable{
         isRunning = false;
         score = 0;
         timeToSleep = 250;
-
         createGameEntities();
     }
 
@@ -39,10 +38,10 @@ public class GamePanel extends JPanel implements Runnable{
     public void endGame(){
         isRunning = false;
 
-        alien=null;
+        alien.setCollided(true);
         gamePoint = null;
         for(int i=0; i <NUM_OBSTACLES; i++){
-            obstacles[i] = null;
+            obstacles[i].setCollided(true);;
         }
 
         Graphics g = this.getGraphics ();
@@ -73,19 +72,26 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void drawGameEntities(){
-        if(alien != null)
+        if(alien != null && !alien.getCollided())
             alien.draw();
-
+        else
+            alien.clear();
+        
         if(obstacles != null){
             for(int i = 0; i<NUM_OBSTACLES; i++){
-                obstacles[i].draw();
+                if (!obstacles[i].getCollided())
+                    obstacles[i].draw();
+                else
+                    obstacles[i].clear();
             }
         }
+
         if(gamePoint != null){
             //gamePoint.setLocation();
             //gamePoint.erase();
             gamePoint.draw();
         }
+
     }
 
     public void updateGameEntities(){
@@ -94,6 +100,7 @@ public class GamePanel extends JPanel implements Runnable{
             //alien.setVel(direction);
             alien.move();
         }
+
         if(gamePoint != null){
             if(alien.collidesWithGamePoint()){
                 gamePoint.erase();

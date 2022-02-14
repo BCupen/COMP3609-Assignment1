@@ -25,6 +25,7 @@ public class Alien{
 
     private GamePoint gamePoint;
     private Obstacle[] obstacles;
+    private boolean collided;
     
     public Alien(GamePanel p, GamePoint gamePoint, Obstacle[] obstacles){
         panel = p;
@@ -47,6 +48,7 @@ public class Alien{
         
         this.gamePoint = gamePoint;
         this.obstacles = obstacles;
+        collided = false;
     }
 
     public void draw(){
@@ -106,6 +108,19 @@ public class Alien{
       g.dispose();
     }
 
+    public void clear(){
+        Graphics g = panel.getGraphics ();
+        Graphics2D g2 = (Graphics2D) g;
+  
+        // erase face by drawing a rectangle on top of it
+  
+        g2.setColor (Color.RED);
+        g2.fill (new Rectangle2D.Double (x-10, y-10, 30+20, 45+20));
+  
+        g.dispose();
+      }
+  
+
     public void setVel(int direction){
          
         if(direction == 1 || direction == 2){
@@ -154,5 +169,13 @@ public class Alien{
         Rectangle2D.Double thisRect = getBoundingRectangle();
         Rectangle2D.Double ptRect = gamePoint.getBoundingRectangle();
         return thisRect.intersects(ptRect);
+    }
+
+    public boolean getCollided(){
+        return this.collided;
+    }
+
+    public void setCollided(boolean stat){
+        this.collided = stat;
     }
 }
