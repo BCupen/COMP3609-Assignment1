@@ -39,11 +39,11 @@ public class GamePanel extends JPanel implements Runnable{
     public void endGame(){
         isRunning = false;
 
-        alien=null;
-        gamePoint = null;
-        for(int i=0; i <NUM_OBSTACLES; i++){
-            obstacles[i] = null;
-        }
+        // alien=null;
+        // gamePoint = null;
+        // for(int i=0; i <NUM_OBSTACLES; i++){
+        //     obstacles[i] = null;
+        // }
 
         Graphics g = this.getGraphics ();
         Graphics2D g2 = (Graphics2D) g;
@@ -73,6 +73,9 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void drawGameEntities(){
+        if(!isRunning)
+            return;
+
         if(alien != null)
             alien.draw();
 
